@@ -17,10 +17,32 @@ namespace WoodWorking {
         public Form1() {
             InitializeComponent();
 
-            dataGridView1.Columns.Add("column1", "ダメージ表");
-            dataGridView1.Columns[0].Width = 200;
-            dataGridView1.Columns.Add("column2", "概要");
-            dataGridView1.Columns[1].Width = 430;
+            dataGridView1.Columns.Add("column1", "強さ");
+            dataGridView1.Columns.Add("column2", "ダメージ値");
+            dataGridView1.Columns.Add("column3", "会心確定範囲");
+            dataGridView1.Columns.Add("column4", "会心最大値");
+            dataGridView1.Columns.Add("column5", "概要");
+            dataGridView1.Columns[0].Width = 80;
+            dataGridView1.Columns[1].Width = 200;
+            dataGridView1.Columns[2].Width = 140;
+            dataGridView1.Columns[3].Width = 120;
+            dataGridView1.Columns[4].Width = 500;
+            dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            label1.Text = "";
+            label2.Text = "";
+            label3.Text = "";
+            label4.Text = "";
+            label5.Text = "";
+            label6.Text = "";
+            label7.Text = "";
+            label8.Text = "";
+            label9.Text = "";
 
             List<string> damege1 = new List<string>();
             damege1.Add("昇竜(上),10,11,12,13,13,14,15");
@@ -104,14 +126,37 @@ namespace WoodWorking {
             try {
                 dataGridView1.Rows.Clear();
 
-                for (int i = 0; i < list.Count; i++) {
-                    dataGridView1.Rows.Add(list[i]);
+                var list2 = GetLines(list);
+                for (int i = 0; i < list2.Count; i++) {
+                    dataGridView1.Rows.Add(list2[i]);
                 }
                 dataGridView1.CurrentCell = null;
             }
             catch (Exception ex) {
 
             }
+        }
+
+        private List<string[]> GetLines(List<string> list) {
+            List<string[]> returnList = new List<string[]>();
+            for (int i = 0; i < list.Count; i++) {
+                string[] lineParts = list[i].Split(new char[] { ',' });
+                string name = lineParts[0];
+                string range = "";
+                string safeRange = lineParts[lineParts.Length - 1] + "-" + (int.Parse(lineParts[1]) * 2).ToString();
+                string maxNum = (int.Parse(lineParts[lineParts.Length - 1]) * 2).ToString();
+                for (int j = 1; j < lineParts.Length; j++) {
+                    if (range.Length != 0) {
+                        range += ",";
+                    }
+                    range += lineParts[j];
+                }
+                if(checkBox1_3.Checked) {
+                    range += "(+4～6)";
+                }
+                returnList.Add(new string[] { name, range, safeRange, maxNum, "" });
+            }
+            return returnList;
         }
 
         private void button1_Click(object sender, EventArgs e) {
@@ -176,9 +221,17 @@ namespace WoodWorking {
         }
         private void reloadFiles() {
             comboBox1.Items.Clear();
+            if (!Directory.Exists(dir)) {
+                Directory.CreateDirectory(dir);
+            }
+
             string[] files = System.IO.Directory.GetFiles(dir, "*", System.IO.SearchOption.TopDirectoryOnly);
+            int index = comboBox1.SelectedIndex;
             foreach (string key in files) {
                 comboBox1.Items.Add(key.Replace(dir, "").Replace(".txt", ""));
+            }
+            if (index > 0) {
+                comboBox1.SelectedIndex = index;
             }
         }
 
@@ -261,70 +314,72 @@ namespace WoodWorking {
                 remain.Text = (int.Parse(valueText.Text) - value).ToString();
 
                 for (int i = 0; i < dataGridView1.Rows.Count; i++) {
-                    string[] parts = dataGridView1.Rows[i].Cells[0].Value.ToString().Split(new char[] { ',' });
-                    int max = int.Parse(parts[parts.Length - 1]);
-                    int min = int.Parse(parts[1]);
+                    if(dataGridView1.Rows[i].Cells[1].Value != null) {
+                        dataGridView1.Rows[i].Cells[1].Value = dataGridView1.Rows[i].Cells[1].Value.ToString().Replace("(+4～6)", "");
+                        string[] parts = dataGridView1.Rows[i].Cells[1].Value.ToString().Split(new char[] { ',' });
+                        int max = int.Parse(parts[parts.Length - 1]);
+                        int min = int.Parse(parts[0]);
 
-                    int zeroCount = 0;
-                    int oneCount = 0;
-                    for (int j = 1; j < parts.Length; j++) {
-                        if (remainValue - int.Parse(parts[j]) == 0) {
-                            zeroCount++;
-                        }
-                        if (remainValue - int.Parse(parts[j]) == 1) {
-                            oneCount++;
-                        }
-                    }
-
-                    int totalCount = 7;
-                    if(parts[0] == "カンナ") {
-                        totalCount = 4;
-                    }
-
-                    if (max > 0) {
-                        if (max <= remainValue && min * 2 >= remainValue) {
-                            dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gold;
-                            dataGridView1.Rows[i].Cells[1].Value = " (会心で基準値確定)";
-                        }
-                        else if (max * 2 < remainValue) {
-                            dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Aqua;
-                            dataGridView1.Rows[i].Cells[1].Value = " (会心でも届かず)";
-                        }
-                        else if (min > remainValue) {
-                            dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Red;
-                            dataGridView1.Rows[i].Cells[1].Value = " (会心以外は必ず突き抜ける)";
-                        }
-                        else if (max > remainValue) {
-                            dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Pink;
-                            dataGridView1.Rows[i].Cells[1].Value = " (会心以外は突き抜ける可能性がある 誤差0の確率" + zeroCount + "/" + totalCount + " 誤差1の確率" + oneCount + "/" + totalCount + ")";
-                        }
-                        else if (min * 2 < remainValue) {
-                            dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Pink;
-                            dataGridView1.Rows[i].Cells[1].Value = " (偽会心、届かない可能性がある 誤差0の確率" + zeroCount + "/" + totalCount + " 誤差1の確率" + oneCount + "/" + totalCount + ")";
+                        int zeroCount = 0;
+                        int oneCount = 0;
+                        List<int> appendList = new List<int>();
+                        if(checkBox1_3.Checked) {
+                            appendList.Add(4);
+                            appendList.Add(5);
+                            appendList.Add(6);
+                            dataGridView1.Rows[i].Cells[1].Value += "(+4～6)";
                         }
                         else {
-                            dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Purple;
-                            dataGridView1.Rows[i].Cells[1].Value = " (誤差0の確率" + zeroCount + "/" + totalCount + " 誤差1の確率" + oneCount + "/" + totalCount + ")";
+                            appendList.Add(0);
                         }
-                    }
-                    else {
-                        if (remainValue < 0 && max > remainValue) {
-                            dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Pink;
-                            dataGridView1.Rows[i].Cells[1].Value = " (戻しすぎることはない 誤差0の確率" + zeroCount + "/" + totalCount + " 誤差1の確率" + oneCount + "/" + totalCount + ")";
+                        for (int j = 0; j < parts.Length; j++) {
+                            for(int k = 0; k < appendList.Count; k++) {
+                                if (remainValue - int.Parse(parts[j]) - appendList[k] == 0) {
+                                    zeroCount++;
+                                }
+                                if (Math.Abs(remainValue - int.Parse(parts[j]) - appendList[k]) == 1) {
+                                    oneCount++;
+                                }
+                            }
                         }
-                        else if (remainValue < 0 && min < remainValue) {
-                            dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Pink;
-                            dataGridView1.Rows[i].Cells[1].Value = " (必ず戻しすぎてしまう 誤差0の確率" + zeroCount + "/" + totalCount + " 誤差1の確率" + oneCount + "/" + totalCount + ")";
-                        }
-                        else {
-                            dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Purple;
-                            dataGridView1.Rows[i].Cells[1].Value = " (誤差0の確率" + zeroCount + "/" + totalCount + " 誤差1の確率" + oneCount + "/" + totalCount + ")";
+
+                        int totalCount = parts.Length * appendList.Count;
+
+                        if (max > 0) {
+                            if (max <= remainValue && min * 2 >= remainValue) {
+                                dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gold;
+                                dataGridView1.Rows[i].Cells[4].Value = " 会心で基準値確定 誤差0の確率" + zeroCount + "/" + totalCount + " 誤差1の確率" + oneCount + "/" + totalCount;
+                            }
+                            else if (max * 2 < remainValue) {
+                                dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Aqua;
+                                dataGridView1.Rows[i].Cells[4].Value = " 会心でも届かず";
+                            }
+                            else if (remainValue <= 0) {
+                                dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Red;
+                                dataGridView1.Rows[i].Cells[4].Value = " 必ず突き抜ける";
+                            }
+                            else if (min > remainValue) {
+                                dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Red;
+                                dataGridView1.Rows[i].Cells[4].Value = " 会心以外は必ず突き抜ける";
+                            }
+                            else if (max > remainValue) {
+                                dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Pink;
+                                dataGridView1.Rows[i].Cells[4].Value = " 会心以外は突き抜ける可能性がある 誤差0の確率" + zeroCount + "/" + totalCount + " 誤差1の確率" + oneCount + "/" + totalCount;
+                            }
+                            else if (min * 2 < remainValue) {
+                                dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Pink;
+                                dataGridView1.Rows[i].Cells[4].Value = " 偽会心、届かない可能性がある 誤差0の確率" + zeroCount + "/" + totalCount + " 誤差1の確率" + oneCount + "/" + totalCount;
+                            }
+                            else {
+                                dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.MediumPurple;
+                                dataGridView1.Rows[i].Cells[4].Value = " 誤差0の確率" + zeroCount + "/" + totalCount + " 誤差1の確率" + oneCount + "/" + totalCount;
+                            }
                         }
                     }
                 }
             }
             catch (Exception ex) {
-
+                int a = 0;
             }
         }
 
@@ -342,6 +397,17 @@ namespace WoodWorking {
 
         private void textBox1_1_Click(object sender, EventArgs e) {
             ((TextBox)sender).SelectAll();
+        }
+
+        private void checkBox10_CheckedChanged(object sender, EventArgs e) {
+            if (checkBox1_3.Checked) {
+                checkBox1_3.Text = "燃え木";
+            }
+            else {
+                checkBox1_3.Text = "通常木";
+            }
+            setDataGrid();
+
         }
     }
 }

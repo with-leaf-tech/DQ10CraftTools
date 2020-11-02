@@ -23,6 +23,8 @@
         /// コード エディターで変更しないでください。
         /// </summary>
         private void InitializeComponent() {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.checkBox1_1 = new System.Windows.Forms.CheckBox();
             this.checkBox1_2 = new System.Windows.Forms.CheckBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
@@ -68,6 +70,10 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.checkBox1_3 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,10 +81,10 @@
             // 
             this.checkBox1_1.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox1_1.AutoSize = true;
-            this.checkBox1_1.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.checkBox1_1.Location = new System.Drawing.Point(25, 33);
+            this.checkBox1_1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.checkBox1_1.Location = new System.Drawing.Point(12, 12);
             this.checkBox1_1.Name = "checkBox1_1";
-            this.checkBox1_1.Size = new System.Drawing.Size(62, 31);
+            this.checkBox1_1.Size = new System.Drawing.Size(50, 26);
             this.checkBox1_1.TabIndex = 0;
             this.checkBox1_1.Text = "順目";
             this.checkBox1_1.UseVisualStyleBackColor = true;
@@ -88,10 +94,10 @@
             // 
             this.checkBox1_2.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox1_2.AutoSize = true;
-            this.checkBox1_2.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.checkBox1_2.Location = new System.Drawing.Point(25, 76);
+            this.checkBox1_2.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.checkBox1_2.Location = new System.Drawing.Point(12, 47);
             this.checkBox1_2.Name = "checkBox1_2";
-            this.checkBox1_2.Size = new System.Drawing.Size(62, 31);
+            this.checkBox1_2.Size = new System.Drawing.Size(50, 26);
             this.checkBox1_2.TabIndex = 1;
             this.checkBox1_2.Text = "通常";
             this.checkBox1_2.UseVisualStyleBackColor = true;
@@ -99,17 +105,19 @@
             // 
             // textBox10
             // 
-            this.textBox10.Location = new System.Drawing.Point(19, 539);
+            this.textBox10.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBox10.Location = new System.Drawing.Point(581, 42);
             this.textBox10.Multiline = true;
             this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(763, 193);
+            this.textBox10.Size = new System.Drawing.Size(538, 302);
             this.textBox10.TabIndex = 86;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(537, 16);
+            this.button2.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button2.Location = new System.Drawing.Point(483, 13);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(93, 23);
             this.button2.TabIndex = 85;
             this.button2.Text = "読み込み";
             this.button2.UseVisualStyleBackColor = true;
@@ -117,15 +125,17 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(269, 16);
+            this.comboBox1.Location = new System.Drawing.Point(179, 12);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(237, 20);
+            this.comboBox1.Size = new System.Drawing.Size(298, 24);
             this.comboBox1.TabIndex = 84;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(535, 323);
+            this.button1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button1.Location = new System.Drawing.Point(501, 321);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 83;
@@ -135,15 +145,17 @@
             // 
             // textBox18
             // 
-            this.textBox18.Location = new System.Drawing.Point(253, 325);
+            this.textBox18.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBox18.Location = new System.Drawing.Point(187, 321);
             this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(253, 19);
+            this.textBox18.Size = new System.Drawing.Size(308, 23);
             this.textBox18.TabIndex = 82;
             // 
             // checkBox9
             // 
             this.checkBox9.AutoSize = true;
-            this.checkBox9.Location = new System.Drawing.Point(491, 254);
+            this.checkBox9.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.checkBox9.Location = new System.Drawing.Point(395, 252);
             this.checkBox9.Name = "checkBox9";
             this.checkBox9.Size = new System.Drawing.Size(15, 14);
             this.checkBox9.TabIndex = 81;
@@ -152,7 +164,8 @@
             // checkBox8
             // 
             this.checkBox8.AutoSize = true;
-            this.checkBox8.Location = new System.Drawing.Point(333, 254);
+            this.checkBox8.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.checkBox8.Location = new System.Drawing.Point(237, 252);
             this.checkBox8.Name = "checkBox8";
             this.checkBox8.Size = new System.Drawing.Size(15, 14);
             this.checkBox8.TabIndex = 80;
@@ -161,7 +174,8 @@
             // checkBox7
             // 
             this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(172, 254);
+            this.checkBox7.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.checkBox7.Location = new System.Drawing.Point(76, 252);
             this.checkBox7.Name = "checkBox7";
             this.checkBox7.Size = new System.Drawing.Size(15, 14);
             this.checkBox7.TabIndex = 79;
@@ -170,7 +184,8 @@
             // checkBox6
             // 
             this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(491, 159);
+            this.checkBox6.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.checkBox6.Location = new System.Drawing.Point(395, 157);
             this.checkBox6.Name = "checkBox6";
             this.checkBox6.Size = new System.Drawing.Size(15, 14);
             this.checkBox6.TabIndex = 78;
@@ -179,7 +194,8 @@
             // checkBox5
             // 
             this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(333, 159);
+            this.checkBox5.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.checkBox5.Location = new System.Drawing.Point(237, 157);
             this.checkBox5.Name = "checkBox5";
             this.checkBox5.Size = new System.Drawing.Size(15, 14);
             this.checkBox5.TabIndex = 77;
@@ -188,7 +204,8 @@
             // checkBox4
             // 
             this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(172, 159);
+            this.checkBox4.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.checkBox4.Location = new System.Drawing.Point(76, 157);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(15, 14);
             this.checkBox4.TabIndex = 76;
@@ -197,7 +214,8 @@
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(491, 59);
+            this.checkBox3.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.checkBox3.Location = new System.Drawing.Point(395, 57);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(15, 14);
             this.checkBox3.TabIndex = 75;
@@ -206,7 +224,8 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(333, 59);
+            this.checkBox2.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.checkBox2.Location = new System.Drawing.Point(237, 57);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(15, 14);
             this.checkBox2.TabIndex = 74;
@@ -215,7 +234,8 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(172, 59);
+            this.checkBox1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.checkBox1.Location = new System.Drawing.Point(76, 57);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(15, 14);
             this.checkBox1.TabIndex = 73;
@@ -223,99 +243,125 @@
             // 
             // dataGridView1
             // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Location = new System.Drawing.Point(18, 361);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 21;
-            this.dataGridView1.Size = new System.Drawing.Size(764, 171);
+            this.dataGridView1.Size = new System.Drawing.Size(1101, 202);
             this.dataGridView1.TabIndex = 72;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(510, 286);
+            this.label9.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label9.Location = new System.Drawing.Point(414, 287);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(35, 12);
+            this.label9.Size = new System.Drawing.Size(46, 16);
             this.label9.TabIndex = 71;
             this.label9.Text = "label9";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(352, 286);
+            this.label8.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label8.Location = new System.Drawing.Point(256, 287);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 12);
+            this.label8.Size = new System.Drawing.Size(46, 16);
             this.label8.TabIndex = 70;
             this.label8.Text = "label8";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(191, 286);
+            this.label7.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label7.Location = new System.Drawing.Point(95, 287);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 12);
+            this.label7.Size = new System.Drawing.Size(46, 16);
             this.label7.TabIndex = 69;
             this.label7.Text = "label7";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(510, 191);
+            this.label6.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label6.Location = new System.Drawing.Point(414, 193);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(35, 12);
+            this.label6.Size = new System.Drawing.Size(46, 16);
             this.label6.TabIndex = 68;
             this.label6.Text = "label6";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(352, 191);
+            this.label5.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label5.Location = new System.Drawing.Point(256, 193);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 12);
+            this.label5.Size = new System.Drawing.Size(46, 16);
             this.label5.TabIndex = 67;
             this.label5.Text = "label5";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(193, 191);
+            this.label4.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label4.Location = new System.Drawing.Point(97, 193);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 12);
+            this.label4.Size = new System.Drawing.Size(46, 16);
             this.label4.TabIndex = 66;
             this.label4.Text = "label4";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(510, 95);
+            this.label3.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label3.Location = new System.Drawing.Point(414, 93);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 12);
+            this.label3.Size = new System.Drawing.Size(46, 16);
             this.label3.TabIndex = 65;
             this.label3.Text = "label3";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(352, 95);
+            this.label2.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label2.Location = new System.Drawing.Point(256, 93);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 12);
+            this.label2.Size = new System.Drawing.Size(46, 16);
             this.label2.TabIndex = 64;
             this.label2.Text = "label2";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(193, 95);
+            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.Location = new System.Drawing.Point(97, 93);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 12);
+            this.label1.Size = new System.Drawing.Size(46, 16);
             this.label1.TabIndex = 63;
             this.label1.Text = "label1";
             // 
             // textBox9_1
             // 
-            this.textBox9_1.Location = new System.Drawing.Point(512, 264);
+            this.textBox9_1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBox9_1.Location = new System.Drawing.Point(416, 262);
             this.textBox9_1.Name = "textBox9_1";
-            this.textBox9_1.Size = new System.Drawing.Size(100, 19);
+            this.textBox9_1.Size = new System.Drawing.Size(100, 23);
             this.textBox9_1.TabIndex = 62;
             this.textBox9_1.Click += new System.EventHandler(this.textBox1_1_Click);
             this.textBox9_1.TextChanged += new System.EventHandler(this.textBox1_1_TextChanged);
@@ -323,9 +369,10 @@
             // 
             // textBox8_1
             // 
-            this.textBox8_1.Location = new System.Drawing.Point(354, 264);
+            this.textBox8_1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBox8_1.Location = new System.Drawing.Point(258, 262);
             this.textBox8_1.Name = "textBox8_1";
-            this.textBox8_1.Size = new System.Drawing.Size(100, 19);
+            this.textBox8_1.Size = new System.Drawing.Size(100, 23);
             this.textBox8_1.TabIndex = 61;
             this.textBox8_1.Click += new System.EventHandler(this.textBox1_1_Click);
             this.textBox8_1.TextChanged += new System.EventHandler(this.textBox1_1_TextChanged);
@@ -333,9 +380,10 @@
             // 
             // textBox7_1
             // 
-            this.textBox7_1.Location = new System.Drawing.Point(193, 264);
+            this.textBox7_1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBox7_1.Location = new System.Drawing.Point(97, 262);
             this.textBox7_1.Name = "textBox7_1";
-            this.textBox7_1.Size = new System.Drawing.Size(100, 19);
+            this.textBox7_1.Size = new System.Drawing.Size(100, 23);
             this.textBox7_1.TabIndex = 60;
             this.textBox7_1.Click += new System.EventHandler(this.textBox1_1_Click);
             this.textBox7_1.TextChanged += new System.EventHandler(this.textBox1_1_TextChanged);
@@ -343,9 +391,10 @@
             // 
             // textBox6_1
             // 
-            this.textBox6_1.Location = new System.Drawing.Point(512, 169);
+            this.textBox6_1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBox6_1.Location = new System.Drawing.Point(416, 167);
             this.textBox6_1.Name = "textBox6_1";
-            this.textBox6_1.Size = new System.Drawing.Size(100, 19);
+            this.textBox6_1.Size = new System.Drawing.Size(100, 23);
             this.textBox6_1.TabIndex = 59;
             this.textBox6_1.Click += new System.EventHandler(this.textBox1_1_Click);
             this.textBox6_1.TextChanged += new System.EventHandler(this.textBox1_1_TextChanged);
@@ -353,9 +402,10 @@
             // 
             // textBox5_1
             // 
-            this.textBox5_1.Location = new System.Drawing.Point(354, 169);
+            this.textBox5_1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBox5_1.Location = new System.Drawing.Point(258, 167);
             this.textBox5_1.Name = "textBox5_1";
-            this.textBox5_1.Size = new System.Drawing.Size(100, 19);
+            this.textBox5_1.Size = new System.Drawing.Size(100, 23);
             this.textBox5_1.TabIndex = 58;
             this.textBox5_1.Click += new System.EventHandler(this.textBox1_1_Click);
             this.textBox5_1.TextChanged += new System.EventHandler(this.textBox1_1_TextChanged);
@@ -363,9 +413,10 @@
             // 
             // textBox4_1
             // 
-            this.textBox4_1.Location = new System.Drawing.Point(193, 169);
+            this.textBox4_1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBox4_1.Location = new System.Drawing.Point(97, 167);
             this.textBox4_1.Name = "textBox4_1";
-            this.textBox4_1.Size = new System.Drawing.Size(100, 19);
+            this.textBox4_1.Size = new System.Drawing.Size(100, 23);
             this.textBox4_1.TabIndex = 57;
             this.textBox4_1.Click += new System.EventHandler(this.textBox1_1_Click);
             this.textBox4_1.TextChanged += new System.EventHandler(this.textBox1_1_TextChanged);
@@ -373,9 +424,10 @@
             // 
             // textBox3_1
             // 
-            this.textBox3_1.Location = new System.Drawing.Point(512, 69);
+            this.textBox3_1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBox3_1.Location = new System.Drawing.Point(416, 67);
             this.textBox3_1.Name = "textBox3_1";
-            this.textBox3_1.Size = new System.Drawing.Size(100, 19);
+            this.textBox3_1.Size = new System.Drawing.Size(100, 23);
             this.textBox3_1.TabIndex = 56;
             this.textBox3_1.Click += new System.EventHandler(this.textBox1_1_Click);
             this.textBox3_1.TextChanged += new System.EventHandler(this.textBox1_1_TextChanged);
@@ -383,9 +435,10 @@
             // 
             // textBox2_1
             // 
-            this.textBox2_1.Location = new System.Drawing.Point(354, 69);
+            this.textBox2_1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBox2_1.Location = new System.Drawing.Point(258, 67);
             this.textBox2_1.Name = "textBox2_1";
-            this.textBox2_1.Size = new System.Drawing.Size(100, 19);
+            this.textBox2_1.Size = new System.Drawing.Size(100, 23);
             this.textBox2_1.TabIndex = 55;
             this.textBox2_1.Click += new System.EventHandler(this.textBox1_1_Click);
             this.textBox2_1.TextChanged += new System.EventHandler(this.textBox1_1_TextChanged);
@@ -393,9 +446,10 @@
             // 
             // textBox1_1
             // 
-            this.textBox1_1.Location = new System.Drawing.Point(193, 69);
+            this.textBox1_1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBox1_1.Location = new System.Drawing.Point(97, 67);
             this.textBox1_1.Name = "textBox1_1";
-            this.textBox1_1.Size = new System.Drawing.Size(100, 19);
+            this.textBox1_1.Size = new System.Drawing.Size(100, 23);
             this.textBox1_1.TabIndex = 54;
             this.textBox1_1.Click += new System.EventHandler(this.textBox1_1_Click);
             this.textBox1_1.TextChanged += new System.EventHandler(this.textBox1_1_TextChanged);
@@ -403,69 +457,79 @@
             // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(512, 239);
+            this.textBox9.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBox9.Location = new System.Drawing.Point(416, 237);
             this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(100, 19);
+            this.textBox9.Size = new System.Drawing.Size(100, 23);
             this.textBox9.TabIndex = 53;
             // 
             // textBox8
             // 
-            this.textBox8.Location = new System.Drawing.Point(354, 239);
+            this.textBox8.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBox8.Location = new System.Drawing.Point(258, 237);
             this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(100, 19);
+            this.textBox8.Size = new System.Drawing.Size(100, 23);
             this.textBox8.TabIndex = 52;
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(193, 239);
+            this.textBox7.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBox7.Location = new System.Drawing.Point(97, 237);
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(100, 19);
+            this.textBox7.Size = new System.Drawing.Size(100, 23);
             this.textBox7.TabIndex = 51;
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(512, 144);
+            this.textBox6.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBox6.Location = new System.Drawing.Point(416, 142);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 19);
+            this.textBox6.Size = new System.Drawing.Size(100, 23);
             this.textBox6.TabIndex = 50;
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(354, 144);
+            this.textBox5.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBox5.Location = new System.Drawing.Point(258, 142);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 19);
+            this.textBox5.Size = new System.Drawing.Size(100, 23);
             this.textBox5.TabIndex = 49;
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(193, 144);
+            this.textBox4.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBox4.Location = new System.Drawing.Point(97, 142);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 19);
+            this.textBox4.Size = new System.Drawing.Size(100, 23);
             this.textBox4.TabIndex = 48;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(512, 44);
+            this.textBox3.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBox3.Location = new System.Drawing.Point(416, 42);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 19);
+            this.textBox3.Size = new System.Drawing.Size(100, 23);
             this.textBox3.TabIndex = 47;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(354, 44);
+            this.textBox2.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBox2.Location = new System.Drawing.Point(258, 42);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 19);
+            this.textBox2.Size = new System.Drawing.Size(100, 23);
             this.textBox2.TabIndex = 46;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(193, 44);
+            this.textBox1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBox1.Location = new System.Drawing.Point(97, 42);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 19);
+            this.textBox1.Size = new System.Drawing.Size(100, 23);
             this.textBox1.TabIndex = 45;
             // 
             // button3
             // 
+            this.button3.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.button3.Location = new System.Drawing.Point(18, 321);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
@@ -474,11 +538,58 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label10.Location = new System.Drawing.Point(79, 16);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(94, 16);
+            this.label10.TabIndex = 88;
+            this.label10.Text = "プリセット設定";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label11.Location = new System.Drawing.Point(103, 324);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(78, 16);
+            this.label11.TabIndex = 89;
+            this.label11.Text = "プリセット名";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label12.Location = new System.Drawing.Point(582, 17);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(63, 16);
+            this.label12.TabIndex = 90;
+            this.label12.Text = "木工メモ";
+            // 
+            // checkBox1_3
+            // 
+            this.checkBox1_3.Appearance = System.Windows.Forms.Appearance.Button;
+            this.checkBox1_3.AutoSize = true;
+            this.checkBox1_3.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.checkBox1_3.Location = new System.Drawing.Point(12, 83);
+            this.checkBox1_3.Name = "checkBox1_3";
+            this.checkBox1_3.Size = new System.Drawing.Size(66, 26);
+            this.checkBox1_3.TabIndex = 91;
+            this.checkBox1_3.Text = "通常木";
+            this.checkBox1_3.UseVisualStyleBackColor = true;
+            this.checkBox1_3.CheckedChanged += new System.EventHandler(this.checkBox10_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(794, 746);
+            this.ClientSize = new System.Drawing.Size(1131, 574);
+            this.Controls.Add(this.checkBox1_3);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.textBox10);
             this.Controls.Add(this.button2);
@@ -579,6 +690,10 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.CheckBox checkBox1_3;
     }
 }
 

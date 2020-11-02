@@ -20,8 +20,19 @@ namespace BlackSmith {
         public Form1() {
             InitializeComponent();
 
-            dataGridView1.Columns.Add("column1", "ダメージ表");
-            dataGridView1.Columns[0].Width = 400;
+            dataGridView1.Columns.Add("column1", "強さ");
+            dataGridView1.Columns.Add("column2", "ダメージ値");
+            dataGridView1.Columns.Add("column3", "会心時安全領域");
+            dataGridView1.Columns.Add("column4", "会心最大値");
+            dataGridView1.Columns[0].Width = 100;
+            dataGridView1.Columns[1].Width = 140;
+            dataGridView1.Columns[2].Width = 160;
+            dataGridView1.Columns[3].Width = 120;
+            dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             for (int i = 2000; i > 0; i-= 50) {
                 listBox1.Items.Add(i);
             }
@@ -546,6 +557,10 @@ namespace BlackSmith {
                     return;
                 }
             }
+            if(comboBox2.SelectedIndex < 0) {
+                MessageBox.Show("地金を選択してください", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             List<string> paramList = new List<string>();
             try {
@@ -601,9 +616,17 @@ namespace BlackSmith {
 
         private void reloadFiles() {
             comboBox1.Items.Clear();
+            if(!Directory.Exists(dir)) {
+                Directory.CreateDirectory(dir);
+            }
+
             string[] files = System.IO.Directory.GetFiles(dir, "*", System.IO.SearchOption.TopDirectoryOnly);
-            foreach(string key in files) {
+            int index = comboBox1.SelectedIndex;
+            foreach (string key in files) {
                 comboBox1.Items.Add(key.Replace(dir, "").Replace(".txt", ""));
+            }
+            if(index > 0) {
+                comboBox1.SelectedIndex = index;
             }
         }
 
@@ -612,28 +635,50 @@ namespace BlackSmith {
             try {
                 listBox2.Items.Clear();
                 dataGridView1.Rows.Clear();
-                int temp = int.Parse(listBox1.SelectedItem.ToString());
-                List<string> list = null;
-                if (comboBox2.SelectedItem.ToString() == "威力会心アップ") {
-                    list = damegeDic2[temp];
+                if(listBox1.SelectedIndex >= 0) {
+                    int temp = int.Parse(listBox1.SelectedItem.ToString());
+                    List<string> list = null;
+                    if (comboBox2.SelectedItem.ToString() == "威力会心アップ") {
+                        list = damegeDic2[temp];
+                    }
+                    else if (comboBox2.SelectedItem.ToString() == "たたき変化") {
+                        list = damegeDichalf[temp];
+                    }
+                    else {
+                        list = damegeDic[temp];
+                    }
+                    var list2 = GetLines(list);
+                    for (int i = 0; i < list2.Count; i++) {
+                        //listBox2.Items.Add(list[i]);
+                        dataGridView1.Rows.Add(list2[i]);
+                    }
+                    dataGridView1.CurrentCell = null;
                 }
-                else if (comboBox2.SelectedItem.ToString() == "たたき変化") {
-                    list = damegeDichalf[temp];
-                }
-                else {
-                    list = damegeDic[temp];
-                }
-
-                for (int i = 0; i < list.Count; i++) {
-                    listBox2.Items.Add(list[i]);
-                    dataGridView1.Rows.Add(list[i]);
-                }
-                dataGridView1.CurrentCell = null;
             }
             catch(Exception ex) {
-
+                string error = ex.Message;
             }
         }
+
+        private List<string[]> GetLines(List<string> list) {
+            List<string[]> returnList = new List<string[]>();
+            for (int i = 0; i < list.Count; i++) {
+                string[] lineParts = list[i].Split(new char[] { ',' });
+                string name = lineParts[0];
+                string safeRange = lineParts[lineParts.Length - 2];
+                string maxNum = lineParts[lineParts.Length - 1];
+                string range = "";
+                for(int j = 1; j < lineParts.Length -2; j++) {
+                    if(range.Length != 0) {
+                        range += ",";
+                    }
+                    range += lineParts[j];
+                }
+                returnList.Add(new string[] { name, range, safeRange, maxNum });
+            }
+            return returnList;
+        }
+
 
         private void textBox1_TextChanged(object sender, EventArgs e) {
             TextBox low = textBox1_1;
@@ -691,24 +736,32 @@ namespace BlackSmith {
                 remain.Text = (int.Parse(high.Text) - value).ToString();
 
                 for (int i = 0; i < dataGridView1.Rows.Count; i++) {
-                    string[] parts = dataGridView1.Rows[i].Cells[0].Value.ToString().Split(new char[] { ',' });
-                    string[] range = parts[parts.Length - 2].Split(new char[] { '-' });
-                    string max = parts[parts.Length - 3];
-                    string max2 = parts[parts.Length - 1];
-                    if (int.Parse(range[0]) <= remainValue && int.Parse(range[1]) >= remainValue) {
-                        dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gold;
-                    }
-                    else if (int.Parse(max2) < remainValue) {
-                        dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Aqua;
-                    }
-                    else if (int.Parse(max) > remainValue) {
-                        dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Red;
-                    }
-                    else {
-                        dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Purple;
+                    if(dataGridView1.Rows[i].Cells[0].Value != null) {
+                        /*
+                        string[] parts = dataGridView1.Rows[i].Cells[0].Value.ToString().Split(new char[] { ',' });
+                        string[] range = parts[parts.Length - 2].Split(new char[] { '-' });
+                        string max = parts[parts.Length - 3];
+                        string max2 = parts[parts.Length - 1];
+                        */
+                        string[] parts = dataGridView1.Rows[i].Cells[1].Value.ToString().Split(new char[] { ',' });
+                        string[] range = dataGridView1.Rows[i].Cells[2].Value.ToString().Split(new char[] { '-' });
+                        string max = parts[parts.Length - 1];
+                        string max2 = dataGridView1.Rows[i].Cells[3].Value.ToString();
+                        if (int.Parse(range[0]) <= remainValue && int.Parse(range[1]) >= remainValue) {
+                            dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gold;
+                        }
+                        else if (int.Parse(max2) < remainValue) {
+                            dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Aqua;
+                        }
+                        else if (int.Parse(max) > remainValue) {
+                            dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Red;
+                        }
+                        else {
+                            dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.MediumPurple;
+                        }
                     }
                 }
-            }
+        }
             catch (Exception ex) {
 
             }
