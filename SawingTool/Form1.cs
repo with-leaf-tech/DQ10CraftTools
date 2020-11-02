@@ -51,6 +51,8 @@ namespace SawingTool {
             damege1.Add("ほぐし,-3,-3,-3,-3,-4,-4,-4");
             damege1.Add("2倍,12,13,14,15,16,17,18");
             damege1.Add("3倍,18,20,21,23,24,26,27");
+            damege1.Add("巻中心,9,10,11,12,12,13,14");
+            damege1.Add("巻周り,5,5,6,6,6,7,7");
             damegeDic.Add(damege1);
 
             damege1 = new List<string>();
@@ -59,6 +61,8 @@ namespace SawingTool {
             damege1.Add("ほぐし,-6,-6,-7,-7,-8,-8,-9");
             damege1.Add("2倍,24,26,28,30,32,34,36");
             damege1.Add("3倍,36,39,42,45,48,51,54");
+            damege1.Add("巻中心,18,20,21,23,24,26,27");
+            damege1.Add("巻周り,9,10,11,12,12,13,14");
             damegeDic.Add(damege1);
 
             damege1 = new List<string>();
@@ -67,6 +71,8 @@ namespace SawingTool {
             damege1.Add("ほぐし,-9,-9,-10,-10,-12,-12,-13");
             damege1.Add("2倍,36,39,42,45,48,51,54");
             damege1.Add("3倍,54,59,63,68,72,77,81");
+            damege1.Add("巻中心,27,30,32,35,36,39,41");
+            damege1.Add("巻周り,13,15,17,18,18,20,21");
             damegeDic.Add(damege1);
 
             damege1 = new List<string>();
@@ -75,6 +81,8 @@ namespace SawingTool {
             damege1.Add("ほぐし,-12,-12,-14,-14,-16,-16,-18");
             damege1.Add("2倍,48,52,56,60,64,68,72");
             damege1.Add("3倍,72,78,84,90,96,102,108");
+            damege1.Add("巻中心,36,40,42,46,48,52,54");
+            damege1.Add("巻周り,18,20,22,24,24,26,28");
             damegeDic.Add(damege1);
 
             for(int i = 0; i < damegeDic.Count; i++) {
