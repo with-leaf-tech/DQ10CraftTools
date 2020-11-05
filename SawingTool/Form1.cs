@@ -24,7 +24,7 @@ namespace SawingTool {
             dataGridView1.Columns.Add("column4", "会心最大値");
             dataGridView1.Columns.Add("column5", "概要");
             dataGridView1.Columns[0].Width = 80;
-            dataGridView1.Columns[1].Width = 200;
+            dataGridView1.Columns[1].Width = 260;
             dataGridView1.Columns[2].Width = 140;
             dataGridView1.Columns[3].Width = 120;
             dataGridView1.Columns[4].Width = 480;
@@ -258,7 +258,21 @@ namespace SawingTool {
 
                 for (int i = 0; i < dataGridView1.Rows.Count; i++) {
                     if(dataGridView1.Rows[i].Cells[1].Value != null) {
+                        dataGridView1.Rows[i].Cells[1].Value = dataGridView1.Rows[i].Cells[1].Value.ToString().Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)[0];
+                        dataGridView1.Rows[i].Cells[3].Value = dataGridView1.Rows[i].Cells[3].Value.ToString().Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)[0];
+
                         string[] parts = dataGridView1.Rows[i].Cells[1].Value.ToString().Split(new char[] { ',' });
+                        string resultRemain = "";
+                        for(int j = 0; j < parts.Length; j++) {
+                            if(resultRemain.Length > 0) {
+                                resultRemain += ",";
+                            }
+                            resultRemain += "(" + (remainValue - int.Parse(parts[j])) + ")";
+                        }
+                        dataGridView1.Rows[i].Cells[1].Value += Environment.NewLine + resultRemain;
+                        if(dataGridView1.Rows[i].Cells[3].Value.ToString() != "-") {
+                            dataGridView1.Rows[i].Cells[3].Value += Environment.NewLine + "(" + (remainValue - int.Parse(dataGridView1.Rows[i].Cells[3].Value.ToString())) + ")";
+                        }
                         int max = int.Parse(parts[parts.Length - 1]);
                         int min = int.Parse(parts[0]);
 
@@ -340,6 +354,7 @@ namespace SawingTool {
                 var list2 = GetLines(list);
                 for (int i = 0; i < list2.Count; i++) {
                     dataGridView1.Rows.Add(list2[i]);
+                    dataGridView1.Rows[i].Height = 40;
                 }
                 dataGridView1.CurrentCell = null;
             }

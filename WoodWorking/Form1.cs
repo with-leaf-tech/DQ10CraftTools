@@ -23,7 +23,7 @@ namespace WoodWorking {
             dataGridView1.Columns.Add("column4", "会心最大値");
             dataGridView1.Columns.Add("column5", "概要");
             dataGridView1.Columns[0].Width = 80;
-            dataGridView1.Columns[1].Width = 200;
+            dataGridView1.Columns[1].Width = 440;
             dataGridView1.Columns[2].Width = 140;
             dataGridView1.Columns[3].Width = 120;
             dataGridView1.Columns[4].Width = 500;
@@ -140,6 +140,7 @@ namespace WoodWorking {
                 var list2 = GetLines(list);
                 for (int i = 0; i < list2.Count; i++) {
                     dataGridView1.Rows.Add(list2[i]);
+                    dataGridView1.Rows[i].Height = 40;
                 }
                 dataGridView1.CurrentCell = null;
             }
@@ -192,6 +193,7 @@ namespace WoodWorking {
                 paramList.Add(buildParam(checkBox7, textBox7));
                 paramList.Add(buildParam(checkBox8, textBox8));
                 paramList.Add(buildParam(checkBox9, textBox9));
+                paramList.Add(checkBox1_3.Checked ? "1" : "0");
                 paramList.Add(textBox10.Text);
 
                 File.WriteAllLines(dir + textBox18.Text + ".txt", paramList.ToArray());
@@ -262,8 +264,15 @@ namespace WoodWorking {
             setParam(checkBox8, textBox8, param[7]);
             setParam(checkBox9, textBox9, param[8]);
 
-            if (param.Length > 9) {
-                for (int i = 9; i < param.Length; i++) {
+            if(param[9] == "1") {
+                checkBox1_3.Checked = true;
+            } 
+            else {
+                checkBox1_3.Checked = false;
+            }
+
+            if (param.Length > 10) {
+                for (int i = 10; i < param.Length; i++) {
                     textBox10.Text += param[i] + "\r\n";
                 }
             }
@@ -326,15 +335,12 @@ namespace WoodWorking {
 
                 for (int i = 0; i < dataGridView1.Rows.Count; i++) {
                     if(dataGridView1.Rows[i].Cells[1].Value != null) {
+                        dataGridView1.Rows[i].Cells[1].Value = dataGridView1.Rows[i].Cells[1].Value.ToString().Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)[0];
+                        dataGridView1.Rows[i].Cells[3].Value = dataGridView1.Rows[i].Cells[3].Value.ToString().Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)[0];
                         dataGridView1.Rows[i].Cells[1].Value = dataGridView1.Rows[i].Cells[1].Value.ToString().Replace("(+4～6)", "");
                         string[] parts = dataGridView1.Rows[i].Cells[1].Value.ToString().Split(new char[] { ',' });
-                        int max = int.Parse(parts[parts.Length - 1]);
-                        int min = int.Parse(parts[0]);
-
-                        int zeroCount = 0;
-                        int oneCount = 0;
                         List<int> appendList = new List<int>();
-                        if(checkBox1_3.Checked) {
+                        if (checkBox1_3.Checked) {
                             appendList.Add(4);
                             appendList.Add(5);
                             appendList.Add(6);
@@ -343,6 +349,60 @@ namespace WoodWorking {
                         else {
                             appendList.Add(0);
                         }
+
+                        string resultRemain = "";
+                        Dictionary<int, int> damegeDic = new Dictionary<int, int>();
+                        if (checkBox1_3.Checked) {
+                            for(int k = 4; k <= 6; k++) {
+                                for (int j = 0; j < parts.Length; j++) {
+                                    if (resultRemain.Length > 0) {
+                                        resultRemain += ",";
+                                    }
+                                    int remainTemp = (remainValue - int.Parse(parts[j]) - k);
+                                    if(!damegeDic.ContainsKey(remainTemp)) {
+                                        damegeDic.Add(remainTemp, 0);
+                                    }
+                                    damegeDic[remainTemp]++;
+                                }
+                            }
+                            if (dataGridView1.Rows[i].Cells[3].Value.ToString() != "-") {
+                                dataGridView1.Rows[i].Cells[3].Value += Environment.NewLine + 
+                                    "(" + (remainValue - int.Parse(dataGridView1.Rows[i].Cells[3].Value.ToString()) - 4) + ")," +
+                                    "(" + (remainValue - int.Parse(dataGridView1.Rows[i].Cells[3].Value.ToString()) - 5) + ")," +
+                                    "(" + (remainValue - int.Parse(dataGridView1.Rows[i].Cells[3].Value.ToString()) - 6) + ")"
+                                    ;
+                            }
+                        }
+                        else {
+                            for (int j = 0; j < parts.Length; j++) {
+                                if (resultRemain.Length > 0) {
+                                    resultRemain += ",";
+                                }
+                                int remainTemp = (remainValue - int.Parse(parts[j]));
+                                if (!damegeDic.ContainsKey(remainTemp)) {
+                                    damegeDic.Add(remainTemp, 0);
+                                }
+                                damegeDic[remainTemp]++;
+                            }
+                            if (dataGridView1.Rows[i].Cells[3].Value.ToString() != "-") {
+                                dataGridView1.Rows[i].Cells[3].Value += Environment.NewLine + "(" + (remainValue - int.Parse(dataGridView1.Rows[i].Cells[3].Value.ToString())) + ")";
+                            }
+                        }
+
+                        foreach (int key in damegeDic.Keys.OrderBy(x => x)) {
+                            if(resultRemain.Length > 0) {
+                                resultRemain += ",";
+                            }
+                            resultRemain += "(" + key + "*" + damegeDic[key] + ")";
+                        }
+                        dataGridView1.Rows[i].Cells[1].Value += Environment.NewLine + resultRemain;
+
+
+                        int max = int.Parse(parts[parts.Length - 1]);
+                        int min = int.Parse(parts[0]);
+
+                        int zeroCount = 0;
+                        int oneCount = 0;
                         for (int j = 0; j < parts.Length; j++) {
                             for(int k = 0; k < appendList.Count; k++) {
                                 if (remainValue - int.Parse(parts[j]) - appendList[k] == 0) {
