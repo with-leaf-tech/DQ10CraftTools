@@ -13,7 +13,10 @@ namespace SawingTool {
     public partial class Form1 : Form {
         private List<List<string>> damegeDic = new List<List<string>>();
         private List<List<string>> damegeDic2 = new List<List<string>>();
+        private List<List<string>> damegeDic4 = new List<List<string>>();
         string dir = "./files/";
+        TextBox lastEntry = null;
+        int magnification = 1;
 
         public Form1() {
             InitializeComponent();
@@ -24,16 +27,17 @@ namespace SawingTool {
             dataGridView1.Columns.Add("column4", "会心最大値");
             dataGridView1.Columns.Add("column5", "概要");
             dataGridView1.Columns[0].Width = 80;
-            dataGridView1.Columns[1].Width = 260;
-            dataGridView1.Columns[2].Width = 140;
-            dataGridView1.Columns[3].Width = 120;
-            dataGridView1.Columns[4].Width = 480;
+            dataGridView1.Columns[1].Width = 420;
+            dataGridView1.Columns[2].Width = 160;
+            dataGridView1.Columns[3].Width = 140;
+            dataGridView1.Columns[4].Width = 680;
             dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Font = new Font("MS UI Gothic", 14);
 
             label1.Text = "";
             label2.Text = "";
@@ -88,19 +92,26 @@ namespace SawingTool {
             for(int i = 0; i < damegeDic.Count; i++) {
                 damege1 = damegeDic[i];
                 List<string> damege2 = new List<string>();
+                List<string> damege4 = new List<string>();
                 for (int j = 0; j < damege1.Count; j++) {
                     string[] values = damege1[j].Split(new char[] { ',' });
                     StringBuilder sb = new StringBuilder();
+                    StringBuilder sb2 = new StringBuilder();
                     sb.Append(values[0]);
-                    for(int k = 1; k < values.Length; k++) {
+                    sb2.Append(values[0]);
+                    for (int k = 1; k < values.Length; k++) {
                         sb.Append("," + int.Parse(values[k]) * 2);
+                        sb2.Append("," + int.Parse(values[k]) * 4);
                     }
                     damege2.Add(sb.ToString());
+                    damege4.Add(sb2.ToString());
                 }
                 damegeDic2.Add(damege2);
+                damegeDic4.Add(damege4);
             }
 
             reloadFiles();
+            listBox1.SelectedIndex = 1;
         }
 
         private void button1_Click(object sender, EventArgs e) {
@@ -217,38 +228,50 @@ namespace SawingTool {
             if ((TextBox)sender == textBox1_1) {
                 valueText = textBox1;
                 remain = label1;
+                lastEntry = textBox1_1;
             }
             else if ((TextBox)sender == textBox2_1) {
                 valueText = textBox2;
                 remain = label2;
+                lastEntry = textBox2_1;
             }
             else if ((TextBox)sender == textBox3_1) {
                 valueText = textBox3;
                 remain = label3;
+                lastEntry = textBox3_1;
             }
             else if ((TextBox)sender == textBox4_1) {
                 valueText = textBox4;
                 remain = label4;
+                lastEntry = textBox4_1;
             }
             else if ((TextBox)sender == textBox5_1) {
                 valueText = textBox5;
                 remain = label5;
+                lastEntry = textBox5_1;
             }
             else if ((TextBox)sender == textBox6_1) {
                 valueText = textBox6;
                 remain = label6;
+                lastEntry = textBox6_1;
             }
             else if ((TextBox)sender == textBox7_1) {
                 valueText = textBox7;
                 remain = label7;
+                lastEntry = textBox7_1;
             }
             else if ((TextBox)sender == textBox8_1) {
                 valueText = textBox8;
                 remain = label8;
+                lastEntry = textBox8_1;
             }
             else if ((TextBox)sender == textBox9_1) {
                 valueText = textBox9;
                 remain = label9;
+                lastEntry = textBox9_1;
+            }
+            else {
+                lastEntry = null;
             }
 
             try {
@@ -292,6 +315,10 @@ namespace SawingTool {
                                 dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gold;
                                 dataGridView1.Rows[i].Cells[4].Value = " 会心で基準値確定 誤差0の確率" + zeroCount + "/7 誤差1の確率" + oneCount + "/7";
                             }
+                            else if (zeroCount + oneCount == 7) {
+                                dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gold;
+                                dataGridView1.Rows[i].Cells[4].Value = " 誤差0の確率" + zeroCount + "/7 誤差1の確率" + oneCount + "/7";
+                            }
                             else if (max * 2 < remainValue) {
                                 dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Aqua;
                                 dataGridView1.Rows[i].Cells[4].Value = " 会心でも届かず";
@@ -326,9 +353,17 @@ namespace SawingTool {
                                 dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Pink;
                                 dataGridView1.Rows[i].Cells[4].Value = " 必ず戻しすぎてしまう 誤差0の確率" + zeroCount + "/7 誤差1の確率" + oneCount + "/7";
                             }
-                            else {
-                                dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.MediumPurple;
+                            else if (remainValue < 0 && zeroCount + oneCount == 7) {
+                                dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gold;
                                 dataGridView1.Rows[i].Cells[4].Value = " 誤差0の確率" + zeroCount + "/7 誤差1の確率" + oneCount + "/7";
+                            }
+                            else if (remainValue < 0) {
+                                dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.LightGreen;
+                                dataGridView1.Rows[i].Cells[4].Value = " 誤差0の確率" + zeroCount + "/7 誤差1の確率" + oneCount + "/7";
+                            }
+                            else {
+                                dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Red;
+                                dataGridView1.Rows[i].Cells[4].Value = " 意味なし";
                             }
                         }
                     }
@@ -344,8 +379,11 @@ namespace SawingTool {
                 dataGridView1.Rows.Clear();
                 int temp = listBox1.SelectedIndex;
                 List<string> list = null;
-                if (checkBox10.Checked) {
+                if (magnification == 2) {
                     list = damegeDic2[temp];
+                }
+                else if (magnification == 4) {
+                    list = damegeDic4[temp];
                 }
                 else {
                     list = damegeDic[temp];
@@ -360,6 +398,9 @@ namespace SawingTool {
             }
             catch (Exception ex) {
 
+            }
+            if (lastEntry != null) {
+                lastEntry.Focus();
             }
         }
 
@@ -403,13 +444,40 @@ namespace SawingTool {
         }
 
         private void checkBox10_CheckedChanged(object sender, EventArgs e) {
+            /*
             if (checkBox10.Checked) {
                 checkBox10.Text = "しつけがけ";
             }
             else {
                 checkBox10.Text = "通常";
             }
+            */
             listBox1_SelectedIndexChanged(null, null);
+        }
+
+        private void Form1_Load(object sender, EventArgs e) {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e) {
+            if (magnification == 1) {
+                magnification = 2;
+                button4.Text = "2倍";
+            }
+            else if (magnification == 2) {
+                magnification = 4;
+                button4.Text = "4倍";
+            }
+            else {
+                magnification = 1;
+                button4.Text = "通常";
+            }
+            listBox1_SelectedIndexChanged(null, null);
+        }
+
+        private void button5_Click(object sender, EventArgs e) {
+            string msg = @"";
+            new Form2(msg).Show();
         }
     }
 }

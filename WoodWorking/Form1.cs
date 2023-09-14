@@ -12,6 +12,7 @@ using System.Windows.Forms;
 namespace WoodWorking {
     public partial class Form1 : Form {
         private Dictionary<string, List<string>> damegeDic = new Dictionary<string, List<string>>();
+        TextBox lastEntry = null;
 
         string dir = "./files/";
         public Form1() {
@@ -23,16 +24,17 @@ namespace WoodWorking {
             dataGridView1.Columns.Add("column4", "会心最大値");
             dataGridView1.Columns.Add("column5", "概要");
             dataGridView1.Columns[0].Width = 80;
-            dataGridView1.Columns[1].Width = 440;
-            dataGridView1.Columns[2].Width = 140;
-            dataGridView1.Columns[3].Width = 120;
-            dataGridView1.Columns[4].Width = 500;
+            dataGridView1.Columns[1].Width = 630;
+            dataGridView1.Columns[2].Width = 180;
+            dataGridView1.Columns[3].Width = 140;
+            dataGridView1.Columns[4].Width = 600;
             dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Font = new Font("MS UI Gothic", 14);
 
             label1.Text = "";
             label2.Text = "";
@@ -44,16 +46,23 @@ namespace WoodWorking {
             label8.Text = "";
             label9.Text = "";
 
-            label13.Text = @"
-昇竜(上)：
-　昇竜(上)、大河(右)、流星(右上)、大昇竜(上)、超大河(右)
-通常：
-　通常、ねらい
-昇竜(中)：
-　大昇竜(中)、超大河(中)
-昇竜(下)：
-　昇竜(下)、大河(左)、流星(左下)、大昇竜(下)、超大河(左)
-";
+            label13.Text = @"昇竜(上)　0.8倍
+　昇竜彫り(上)
+　大昇竜彫り(上)
+　大河彫り(右)
+　流星彫り(右上)
+　双竜彫り(上)
+
+昇竜(中)　1.1倍
+　大昇竜彫り(中)
+　超大河彫り(中)
+
+昇竜(下)　1.4倍
+　昇竜彫り(下)
+　大昇竜彫り(下)
+　大河彫り(左)
+　流星彫り(左下)
+　双竜彫り(下)";
 
             List<string> damege1 = new List<string>();
             damege1.Add("昇竜(上),10,11,12,13,13,14,15");
@@ -107,6 +116,9 @@ namespace WoodWorking {
                 checkBox1_2.Text = "通常";
             }
             setDataGrid();
+            if (lastEntry != null) {
+                lastEntry.Focus();
+            }
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e) {
@@ -117,6 +129,9 @@ namespace WoodWorking {
                 checkBox1_1.Text = "順目";
             }
             setDataGrid();
+            if (lastEntry != null) {
+                lastEntry.Focus();
+            }
         }
 
         private void setDataGrid() {
@@ -294,38 +309,50 @@ namespace WoodWorking {
             if ((TextBox)sender == textBox1_1) {
                 valueText = textBox1;
                 remain = label1;
+                lastEntry = textBox1_1;
             }
             else if ((TextBox)sender == textBox2_1) {
                 valueText = textBox2;
                 remain = label2;
+                lastEntry = textBox2_1;
             }
             else if ((TextBox)sender == textBox3_1) {
                 valueText = textBox3;
                 remain = label3;
+                lastEntry = textBox3_1;
             }
             else if ((TextBox)sender == textBox4_1) {
                 valueText = textBox4;
                 remain = label4;
+                lastEntry = textBox4_1;
             }
             else if ((TextBox)sender == textBox5_1) {
                 valueText = textBox5;
                 remain = label5;
+                lastEntry = textBox5_1;
             }
             else if ((TextBox)sender == textBox6_1) {
                 valueText = textBox6;
                 remain = label6;
+                lastEntry = textBox6_1;
             }
             else if ((TextBox)sender == textBox7_1) {
                 valueText = textBox7;
                 remain = label7;
+                lastEntry = textBox7_1;
             }
             else if ((TextBox)sender == textBox8_1) {
                 valueText = textBox8;
                 remain = label8;
+                lastEntry = textBox8_1;
             }
             else if ((TextBox)sender == textBox9_1) {
                 valueText = textBox9;
                 remain = label9;
+                lastEntry = textBox9_1;
+            }
+            else {
+                lastEntry = null;
             }
 
             try {
@@ -478,7 +505,75 @@ namespace WoodWorking {
                 checkBox1_3.Text = "通常木";
             }
             setDataGrid();
+            if (lastEntry != null) {
+                lastEntry.Focus();
+            }
 
+        }
+
+        private void button4_Click(object sender, EventArgs e) {
+            string msg = @"1
+　会心のみ
+2
+　逆目カンナで誤差1　50％
+3
+　逆目カンナで誤差0　50％
+　逆目カンナで誤差1　50％
+4
+　逆目カンナで誤差0　50％
+　逆目カンナで誤差1　50％
+5
+　くさび逆目カンナで誤差0　50％
+　くさび逆目カンナで誤差1　25％
+6
+　逆目昇竜(上)で誤差0　28％
+　逆目昇竜(上)で誤差1　56％
+7
+　逆目カンナ×2　50％
+　逆目昇竜(上)で誤差0　43％
+8
+　逆目通常で誤差0　28％
+　逆目通常で誤差1　56％
+9
+　逆目通常で誤差0　28％
+　逆目通常で誤差1　28％
+　逆目狙い推奨
+10
+　逆目昇竜(上)→残値3、4
+11
+　逆目昇竜(上)→残値3、4
+12,13
+　逆目通常で減らす
+14
+　逆目昇竜(上)で残値7を狙う
+15,16
+　逆目通常で減らす
+　逆目くさび狙い
+17
+　逆目通常で減らす
+　順目通常(狙い)
+　逆目くさび狙い
+18,19
+　順目狙い
+　逆目くさび狙い
+20
+　順目狙い
+　逆目くさび狙い
+21～24
+　順目狙い
+26
+　順目昇竜(下)
+29～40
+　順目くさび狙い
+36,39,40～48
+　順目2倍
+54～72
+　順目3倍
+58～78
+　順目くさび2倍
+87～116
+　順目くさび3倍";
+            new Form2(msg).Show();
         }
     }
 }

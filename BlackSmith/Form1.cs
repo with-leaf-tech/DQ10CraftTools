@@ -16,6 +16,7 @@ namespace BlackSmith {
         private Dictionary<int, List<string>> damegeDic2 = new Dictionary<int, List<string>>();
         private Dictionary<int, List<string>> damegeDichalf = new Dictionary<int, List<string>>();
         string dir = "./files/";
+        TextBox lastEntry = null;
 
         public Form1() {
             InitializeComponent();
@@ -25,14 +26,15 @@ namespace BlackSmith {
             dataGridView1.Columns.Add("column3", "会心時安全領域");
             dataGridView1.Columns.Add("column4", "会心最大値");
             dataGridView1.Columns[0].Width = 100;
-            dataGridView1.Columns[1].Width = 140;
-            dataGridView1.Columns[2].Width = 160;
-            dataGridView1.Columns[3].Width = 120;
+            dataGridView1.Columns[1].Width = 250;
+            dataGridView1.Columns[2].Width = 180;
+            dataGridView1.Columns[3].Width = 150;
             dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Font = new Font("MS UI Gothic", 14);
             for (int i = 2000; i > 0; i-= 50) {
                 listBox1.Items.Add(i);
             }
@@ -510,6 +512,9 @@ namespace BlackSmith {
                 }
             }
             reloadFiles();
+
+            listBox1.SelectedIndex = 20;
+            comboBox2.SelectedIndex = 0;
         }
 
         private void button1_Click(object sender, EventArgs e) {
@@ -658,6 +663,9 @@ namespace BlackSmith {
             catch(Exception ex) {
                 string error = ex.Message;
             }
+            if (lastEntry != null) {
+                lastEntry.Focus();
+            }
         }
 
         private List<string[]> GetLines(List<string> list) {
@@ -688,46 +696,58 @@ namespace BlackSmith {
                 low = textBox1_1;
                 high = textBox1_2;
                 remain = label1;
+                lastEntry = textBox1;
             }
             else if ((TextBox)sender == textBox2) {
                 low = textBox2_1;
                 high = textBox2_2;
                 remain = label2;
+                lastEntry = textBox1;
             }
             else if ((TextBox)sender == textBox3) {
                 low = textBox3_1;
                 high = textBox3_2;
                 remain = label3;
+                lastEntry = textBox1;
             }
             else if ((TextBox)sender == textBox4) {
                 low = textBox4_1;
                 high = textBox4_2;
                 remain = label4;
+                lastEntry = textBox1;
             }
             else if ((TextBox)sender == textBox5) {
                 low = textBox5_1;
                 high = textBox5_2;
                 remain = label5;
+                lastEntry = textBox1;
             }
             else if ((TextBox)sender == textBox6) {
                 low = textBox6_1;
                 high = textBox6_2;
                 remain = label6;
+                lastEntry = textBox1;
             }
             else if ((TextBox)sender == textBox7) {
                 low = textBox7_1;
                 high = textBox7_2;
                 remain = label7;
+                lastEntry = textBox1;
             }
             else if ((TextBox)sender == textBox8) {
                 low = textBox8_1;
                 high = textBox8_2;
                 remain = label8;
+                lastEntry = textBox1;
             }
             else if ((TextBox)sender == textBox9) {
                 low = textBox9_1;
                 high = textBox9_2;
                 remain = label9;
+                lastEntry = textBox1;
+            }
+            else {
+                lastEntry = null;
             }
 
             try {
@@ -787,6 +807,11 @@ namespace BlackSmith {
         private void textBox1_Click(object sender, EventArgs e) {
             ((TextBox)sender).SelectAll();
 
+        }
+
+        private void button5_Click(object sender, EventArgs e) {
+            string msg = @"";
+            new Form2(msg).Show();
         }
     }
 }
